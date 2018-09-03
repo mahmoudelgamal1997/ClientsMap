@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    tools:context="com.example2017.android.clientsmap.Date_Time">
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/DatePicker"
+    android:text="@string/ShowDatePicker"
+    />
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/DatePicker"
+        android:textSize="22dp"
+        android:id="@+id/editText_place"
+        android:layout_marginTop="10dp"
+
+        />
+<CheckBox
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/engAmr"
+    android:text="Eng . Amr"
+    android:textSize="20dp"
+    android:layout_below="@+id/textview"
+    android:layout_marginTop="100dp"
+    />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/engMoh"
+        android:text="Eng.Mohamed"
+        android:textSize="20dp"
+        android:layout_below="@+id/engAmr"
+        android:layout_marginTop="10dp"
+        />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/secratry"
+        android:textSize="20dp"
+        android:text="Secratry"
+        android:layout_below="@+id/engMoh"
+        android:layout_marginTop="10dp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ok"
+        android:id="@+id/but_push"
+        android:layout_below="@+id/secratry"
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true"
+        android:background="#42A5F5"
+       />
+</RelativeLayout>

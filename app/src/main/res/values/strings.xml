@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ClientsMap</string>
+    <string name="title_activity_client_map">Map</string>
+    <string name="title_activity_admin_map">Map</string>
+
+    <string name="ShowDatePicker">Date and Time</string>
+</resources>
