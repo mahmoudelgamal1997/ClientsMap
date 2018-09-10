@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
+import android.widget.Toast;
 
 import com.firebase.geofire.GeoFire;
 import com.firebase.geofire.GeoLocation;
@@ -23,9 +24,12 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,8 +39,10 @@ public class AdminMap extends FragmentActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     Location mlocation;
     private LatLng postion;
+    String name;
     private Map<String,Marker> markers;
 
+    DatabaseReference users=FirebaseDatabase.getInstance().getReference();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,8 +84,30 @@ public class AdminMap extends FragmentActivity implements OnMapReadyCallback {
                 // Add a marker in Sydney and move the camera
 
                 // Add a new marker to the map
-                Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(location.latitude, location.longitude)));
-                markers.put(key, marker);
+
+                Users.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        GenericTypeIndicator<Map<String, String>> genericTypeIndicator = new GenericTypeIndicator<Map<String, String>>() {
+                        };
+                        Map<String, String> map = dataSnapshot.getValue(genericTypeIndicator);
+
+
+                         name=map.get(key);
+
+                        Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(location.latitude, location.longitude)));
+                        marker.setTitle(name);
+                        markers.put(key, marker);
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
 
 
 
@@ -152,14 +180,15 @@ public class AdminMap extends FragmentActivity implements OnMapReadyCallback {
                 double lat = t * toPosition.latitude + (1 - t)
                         * startLatLng.latitude;
                 marker.setPosition(new LatLng(lat, lng));
-
                 if (t < 1.0) {
                     // Post again 16ms later.
                     handler.postDelayed(this, 16);
                 } else {
                     if (hideMarker) {
+
                         marker.setVisible(false);
                     } else {
+
                         marker.setVisible(true);
                     }
                 }

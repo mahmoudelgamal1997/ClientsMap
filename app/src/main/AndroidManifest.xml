@@ -44,7 +44,34 @@
             android:name=".AdminMap"
             android:label="@string/title_activity_admin_map" />
         <activity android:name=".TimeMangement" />
-        <activity android:name=".Date_Time"></activity>
+        <activity android:name=".Date_Time" />
+
+        <service
+            android:name=".Alarm"
+            android:label="Alarm" />
+
+        <activity android:name=".AddReports" />
+        <activity android:name=".Reports"></activity>
+
+        <service android:name=".MyFCMService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <!--###  Register service get token and send it to service  ###-->
+        <service android:name=".FCMRegisterationService" />
+
+        <!--###  Service response to token refresh event  ###-->
+        <service
+            android:name=".FCMTokenRefreshListenerService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
+
     </application>
 
 </manifest>

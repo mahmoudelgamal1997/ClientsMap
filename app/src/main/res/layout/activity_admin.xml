@@ -22,8 +22,19 @@
         android:layout_height="wrap_content"
         android:text="المواعيد "
         android:onClick="time"
+        android:id="@+id/but_time"
         android:layout_below="@+id/map"
 
         />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="التقارير "
+        android:onClick="reports"
+        android:layout_below="@+id/but_time"
+
+        />
+
 
 </RelativeLayout>

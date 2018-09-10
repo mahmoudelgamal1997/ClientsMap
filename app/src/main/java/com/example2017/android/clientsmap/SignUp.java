@@ -33,7 +33,6 @@ public class SignUp extends AppCompatActivity {
         mPassword=(EditText)findViewById(R.id.editText_register_password);
         mRepeatPassword=(EditText)findViewById(R.id.editText_register_password2);
         mUsername=(EditText)findViewById(R.id.editText_username);
-        mMobile=(EditText)findViewById(R.id.editText_mobile);
 
 
 
@@ -46,10 +45,9 @@ public class SignUp extends AppCompatActivity {
         String password=mPassword.getText().toString().toLowerCase().trim();
         String repeatpassword=mRepeatPassword.getText().toString().toLowerCase().trim();
         final String username=mUsername.getText().toString().toLowerCase().trim();
-        String mobil=mMobile.getText().toString().toLowerCase().trim();
 
 
-        if (TextUtils.isEmpty(email) ||TextUtils.isEmpty(password)|| TextUtils.isEmpty(repeatpassword) || TextUtils.isEmpty(username) ||TextUtils.isEmpty(mobil)){
+        if (TextUtils.isEmpty(email) ||TextUtils.isEmpty(password)|| TextUtils.isEmpty(repeatpassword) || TextUtils.isEmpty(username)){
 
             Toast.makeText(SignUp.this, "من فضلك املأ الفراغات كامله", Toast.LENGTH_SHORT).show();
         }else {
@@ -60,39 +58,21 @@ public class SignUp extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
 
+                        if (task.isSuccessful()){
+                            final FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+                            String userId= user.getUid();
+                            DatabaseReference name= FirebaseDatabase.getInstance().getReference().child("username");
+                            name.child(userId).setValue(username);
+                            Toast.makeText(SignUp.this, "تم التسجيل بنجاح ", Toast.LENGTH_SHORT).show();
 
+                        }else{
+                            Toast.makeText(SignUp.this, "حدث خطا يرجي التاكد من الاتصال بالانترنت", Toast.LENGTH_SHORT).show();
 
-
-                    }
-
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(SignUp.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-
-                    }
-                }).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                    @Override
-                    public void onSuccess(AuthResult authResult) {
-
-                        final FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
-                        String userId= user.getUid();
-                        DatabaseReference name= FirebaseDatabase.getInstance().getReference().child("username");
-                        name.child(userId).setValue(username);
-                        Toast.makeText(SignUp.this, "تم التسجيل بنجاح ", Toast.LENGTH_SHORT).show();
-
-
-
-
-
-
-
+                        }
 
 
                     }
                 });
-
-
 
 
 
