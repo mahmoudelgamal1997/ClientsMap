@@ -27,7 +27,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 
-public class Reports extends AppCompatActivity {
+public class Orders extends AppCompatActivity {
+
     DatabaseReference reports;
     RecyclerView recyclerView;
     SharedPreferences sh;
@@ -38,15 +39,17 @@ public class Reports extends AppCompatActivity {
         Firebase.setAndroidContext(this);
 
 
+
+
+
         Intent myIntent = getIntent();
-        String name = myIntent.getStringExtra("name");
+        String name=myIntent.getStringExtra("name");
 
         if (name ==null){
-            sh=getSharedPreferences("keyOrders",MODE_PRIVATE);
-            name= sh.getString("orders","amr shalaby");
+           sh=getSharedPreferences("keyOrders",MODE_PRIVATE);
+          name= sh.getString("orders","amr shalaby");
         }
-
-        reports = FirebaseDatabase.getInstance().getReference().child("Reports").child(name);
+        reports = FirebaseDatabase.getInstance().getReference().child("Orders").child(name);
         reports.keepSynced(true);
 
         recyclerView = (RecyclerView) findViewById(R.id.view);
@@ -65,47 +68,17 @@ public class Reports extends AppCompatActivity {
     }
 
 
-    public void alarm() {
-
-        DatabaseReference reports = FirebaseDatabase.getInstance().getReference().child("Orders");
-
-        reports.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                sendNotification("new report", "you have a report ");
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
 
 
-    }
 
 
-    public void display() {
+
+    public void display(){
 
 
-        FirebaseRecyclerAdapter<ReportItem, Post_viewholder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<ReportItem, Post_viewholder>(
+        FirebaseRecyclerAdapter<ReportItem,Post_viewholder> firebaseRecyclerAdapter=new FirebaseRecyclerAdapter<ReportItem, Post_viewholder>(
                 ReportItem.class,
-                R.layout.report_cardview,
+                R.layout.orders_cardview,
                 Post_viewholder.class,
                 reports
 
@@ -114,11 +87,11 @@ public class Reports extends AppCompatActivity {
             @Override
             protected void populateViewHolder(final Post_viewholder viewHolder, final ReportItem model, final int position) {
 
-                viewHolder.SetData(model.getClientName(), model.getTime(), model.getTimeRecieved(), model.getDrName(),model.getAdress(),model.getMobile(),model.getSpecialisty(),model.getOldUnit(), model.getComment());
+                viewHolder.SetData(model.getClientName(),model.getTime(),model.getTimeRecieved(),model.getDrName(),model.getOrders());
                 viewHolder.view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        String key = getRef(position).getKey();
+                        String key=getRef(position).getKey();
                         reports.child(key).child("TimeRecieved").setValue(Time());
 
 
@@ -130,7 +103,7 @@ public class Reports extends AppCompatActivity {
                     @Override
                     public boolean onLongClick(View view) {
 
-                        AlertDialog.Builder builder = new AlertDialog.Builder(Reports.this);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(Orders.this);
                         builder.setTitle("هل تريد مسح هذا الطلب بالفعل ");
                         builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
                             @Override
@@ -154,19 +127,19 @@ public class Reports extends AppCompatActivity {
 
 
 
+
             }
-
-
-
         };
 
 
         recyclerView.setAdapter(firebaseRecyclerAdapter);
 
 
-    }
 
-    public static class Post_viewholder extends RecyclerView.ViewHolder {
+
+}
+
+    public  static  class Post_viewholder extends RecyclerView.ViewHolder {
 
         View view;
 
@@ -174,28 +147,19 @@ public class Reports extends AppCompatActivity {
             super(itemView);
             view = itemView;
         }
+        public void SetData(String Username,String Time,String TimeRecieved,String Drname,String Report) {
 
-        public void SetData(String Username, String Time, String TimeRecieved, String Drname,String adress,String phone,String specaility,String OldUnit, String Report) {
 
-
-            TextView username = (TextView) view.findViewById(R.id.textview_username);
-            TextView timeSent = (TextView) view.findViewById(R.id.textview_timeSent);
-            TextView DrName = (TextView) view.findViewById(R.id.textview_drName);
-            TextView Dradress = (TextView) view.findViewById(R.id.drAdress);
-            TextView speciality = (TextView) view.findViewById(R.id.textview_specialist);
-            TextView oldUnit = (TextView) view.findViewById(R.id.textview_oldUnit);
-            TextView number = (TextView) view.findViewById(R.id.textview_phone);
-            TextView report = (TextView) view.findViewById(R.id.textview_orders);
-            TextView timeRecieved = (TextView) view.findViewById(R.id.textview_timeRecieved);
+            TextView username=(TextView)view.findViewById(R.id.textview_username);
+            TextView timeSent=(TextView)view.findViewById(R.id.textview_timeSent);
+            TextView DrName=(TextView)view.findViewById(R.id.textview_drName);
+            TextView report=(TextView)view.findViewById(R.id.textview_orders);
+            TextView timeRecieved=(TextView)view.findViewById(R.id.textview_timeRecieved);
 
             username.setText(Username);
             timeSent.setText(Time);
             DrName.setText(Drname);
             report.setText(Report);
-            Dradress.setText(adress);
-            number.setText(phone);
-            speciality.setText(specaility);
-            oldUnit.setText(OldUnit);
             timeRecieved.setText(TimeRecieved);
         }
 
@@ -223,19 +187,20 @@ public class Reports extends AppCompatActivity {
         notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
     }
 
-    public String Time() {
+    public String Time(){
 
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-        int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        int minute = calendar.get(Calendar.MINUTE);
+        Calendar calendar=Calendar.getInstance();
+        int year=calendar.get(Calendar.YEAR);
+        int month=calendar.get(Calendar.MONTH);
+        int day =calendar.get(Calendar.DAY_OF_MONTH);
+        int hour=calendar.get(Calendar.HOUR_OF_DAY);
+        int minute=calendar.get(Calendar.MINUTE);
 
-        final String CollectionDate = "" + year + "-" + month + "-" + day + "  " + hour + ":" + minute;
+        final String CollectionDate=""+year+"-"+month+"-"+day+"  "+hour+":"+minute;
 
         return CollectionDate;
     }
+
 
 
 }

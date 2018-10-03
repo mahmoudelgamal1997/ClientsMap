@@ -2,4 +2,6 @@
 <resources>
     <string name="app_name">ClientsMap</string>
     <string name="ShowDatePicker">تحديد الوقت والتاريخ </string>
+    <string name="title_activity_admin_map">خريطه</string>
+    <string name="title_activity_client_map">خريطه</string>
 </resources>

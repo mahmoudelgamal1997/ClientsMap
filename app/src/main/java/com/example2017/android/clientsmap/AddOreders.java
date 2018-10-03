@@ -4,16 +4,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.firebase.client.Firebase;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,45 +17,42 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddReports extends AppCompatActivity {
+public class AddOreders extends AppCompatActivity {
 
     DatabaseReference report,temp,Users;
-    EditText editText_name,editText_mobile,editText_adress,editText_spealisty,editText_oldUnit,editText_comment;
+    EditText editText_name,editText_report;
     Button but_upload;
     SharedPreferences sh;
     FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_reports);
+        setContentView(R.layout.activity_add_oreders);
 
 
         firebaseAuth=FirebaseAuth.getInstance();
 
 
-        report= FirebaseDatabase.getInstance().getReference().child("Reports");
+        report= FirebaseDatabase.getInstance().getReference().child("Orders");
         Users= FirebaseDatabase.getInstance().getReference().child("username");
         editText_name=(EditText)findViewById(R.id.editText_drName);
-        editText_mobile=(EditText)findViewById(R.id.editText_mobile);
-        editText_adress=(EditText)findViewById(R.id.editText_adress);
-        editText_spealisty=(EditText)findViewById(R.id.editText_specialisty);
-        editText_oldUnit=(EditText)findViewById(R.id.editText_oldUnit);
-        editText_comment=(EditText)findViewById(R.id.editText_comment);
-
-
-
-
+        editText_report=(EditText)findViewById(R.id.editText_report);
         but_upload=(Button)findViewById(R.id.button_ok);
+
+
 
         sh=getSharedPreferences("plz", Context.MODE_PRIVATE );
         final String latitude=sh.getString("latitude","31,00");
         final String logitude=sh.getString("longitude","30,00");
+
+
+
+
 
         Calendar calendar=Calendar.getInstance();
         int year=calendar.get(Calendar.YEAR);
@@ -89,20 +82,15 @@ public class AddReports extends AppCompatActivity {
                         temp=report.child(name).push();
                         temp.child("ClientName").setValue(name);
                         temp.child("DrName").setValue(editText_name.getText().toString().trim());
-                        temp.child("Adress").setValue(editText_adress.getText().toString().trim());
-                        temp.child("Mobile").setValue(editText_mobile.getText().toString().trim());
-                        temp.child("Specialisty").setValue(editText_spealisty.getText().toString().trim());
-                        temp.child("OldUnit").setValue(editText_oldUnit.getText().toString().trim());
-                        temp.child("Comment").setValue(editText_comment.getText().toString().trim());
-
-
-
-
+                        temp.child("Orders").setValue(editText_report.getText().toString().trim());
                         temp.child("Time").setValue(CollectionDate);
                         temp.child("TimeRecieved").setValue("تحت الطلب");
                         temp.child("latitude").setValue(latitude);
                         temp.child("longitude").setValue(logitude);
-                        Toast.makeText(AddReports.this, "تم التسجيل التقرير بنجاح", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddOreders.this, "تم التسجيل التقرير بنجاح", Toast.LENGTH_SHORT).show();
+
+
+
 
                     }
 
@@ -111,9 +99,27 @@ public class AddReports extends AppCompatActivity {
 
                     }
                 });
-   }
+
+
+
+
+
+
+
+
+
+            }
         });
 
+
+
+
     }
+
+
+
+
+
+
 
 }

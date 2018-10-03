@@ -127,7 +127,6 @@ public class AdminMap extends FragmentActivity implements OnMapReadyCallback {
                 // Move the marker
                 Marker marker = markers.get(key);
                 if (marker != null) {
-                    // mMap.animateCamera(marker,location.latitude, location.longitude);
 
                     postion=new LatLng(location.latitude,location.longitude);
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example2017.android.clientsmap">
 
     <!--
@@ -8,10 +9,11 @@
          location permissions for the 'MyLocation' functionality. 
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -34,7 +36,8 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
+            android:value="@string/google_maps_key"
+            tools:ignore="ManifestResource" />
 
         <activity
             android:name=".ClientMap"
@@ -51,7 +54,7 @@
             android:label="Alarm" />
 
         <activity android:name=".AddReports" />
-        <activity android:name=".Reports"></activity>
+        <activity android:name=".Orders" />
 
         <service android:name=".MyFCMService">
             <intent-filter>
@@ -59,10 +62,10 @@
             </intent-filter>
         </service>
 
-        <!--###  Register service get token and send it to service  ###-->
+        <!-- ###  Register service get token and send it to service  ### -->
         <service android:name=".FCMRegisterationService" />
 
-        <!--###  Service response to token refresh event  ###-->
+        <!-- ###  Service response to token refresh event  ### -->
         <service
             android:name=".FCMTokenRefreshListenerService"
             android:exported="false">
@@ -71,7 +74,12 @@
             </intent-filter>
         </service>
 
-
+        <activity android:name=".OrderPerson" />
+        <activity android:name=".AddDevice" />
+        <activity android:name=".Reports" />
+        <activity android:name=".ReportPerson" />
+        <activity android:name=".AddOreders" />
+        <activity android:name=".Select_orders_reports"></activity>
     </application>
 
 </manifest>

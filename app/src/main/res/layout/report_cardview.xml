@@ -18,7 +18,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-       >
+        >
 
         <!-- Les CardView agissent comme des FrameLayout,
          pour avoir une organisation verticale nous devons
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:text="UserName"
             android:padding="4dp"
-            android:textSize="25dp"
+            android:textSize="17dp"
             />
 
 
@@ -65,13 +65,63 @@
             android:padding="4dp"
             android:textSize="22dp"
             />
+
         <TextView
-            android:id="@+id/textview_report"
-            android:layout_width="match_parent"
-            android:text=""
-            android:textSize="20dp"
-            android:layout_below="@+id/textview_drName"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/drAdress"
+            android:text="Adress"
+            android:layout_below="@+id/textview_drName"
+            android:layout_marginTop="5dp"
+            android:padding="4dp"
+            android:textSize="22dp"
+            />
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_phone"
+            android:text="phone"
+            android:layout_below="@+id/drAdress"
+            android:layout_marginTop="20dp"
+            android:inputType="number"
+            android:padding="4dp"
+            android:textSize="22dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_specialist"
+            android:text="specialist"
+            android:layout_below="@+id/textview_phone"
+            android:layout_marginTop="10dp"
+            android:padding="4dp"
+            android:textSize="22dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_oldUnit"
+            android:text="oldunit"
+            android:layout_below="@+id/textview_specialist"
+            android:layout_marginTop="10dp"
+            android:padding="4dp"
+            android:textSize="22dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_orders"
+            android:text=""
+            android:layout_below="@+id/textview_oldUnit"
+            android:layout_marginTop="20dp"
+            android:padding="6dp"
+            android:textSize="22dp"
             />
 
 

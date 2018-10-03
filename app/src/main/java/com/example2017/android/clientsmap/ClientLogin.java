@@ -144,13 +144,7 @@ public class ClientLogin extends AppCompatActivity {
                         }
                     }
                 }
-            }
-            ;
-
-
-
-
-
+            };
 
             firebaseAuth.addAuthStateListener(firebaseAuthListener);
 

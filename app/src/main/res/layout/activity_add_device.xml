@@ -7,11 +7,15 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example2017.android.clientsmap.Reports">
+    tools:context="com.example2017.android.clientsmap.AddDevice">
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/view_Reports"
-        android:background="#cecdcd" />
+<android.support.v7.widget.RecyclerView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/recycle_device"
+
+    >
+
+</android.support.v7.widget.RecyclerView>
+
 </RelativeLayout>

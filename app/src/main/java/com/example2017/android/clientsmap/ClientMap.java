@@ -26,6 +26,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -101,7 +102,7 @@ public class ClientMap extends FragmentActivity implements OnMapReadyCallback, G
                 mydata.commit();
 
 
-                Intent intent=new Intent(ClientMap.this,AddReports.class);
+                Intent intent=new Intent(ClientMap.this,Select_orders_reports.class);
                 startActivity(intent);
             }
         });
@@ -157,8 +158,9 @@ public class ClientMap extends FragmentActivity implements OnMapReadyCallback, G
         mMap.moveCamera(CameraUpdateFactory.newLatLng(currentlocation));
 
 
-        userId= FirebaseAuth.getInstance().getCurrentUser().getUid();
-        if (userId != null) {
+        FirebaseUser isUser= FirebaseAuth.getInstance().getCurrentUser();
+        if (isUser != null) {
+            userId=isUser.getUid();
             DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("CustomerRequest");
             GeoFire geoFire = new GeoFire(db);
             geoFire.setLocation(userId, new GeoLocation(location.getLatitude(), location.getLongitude()), new GeoFire.CompletionListener() {
