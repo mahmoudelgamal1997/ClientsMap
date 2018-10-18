@@ -104,10 +104,6 @@ public class AddOreders extends AppCompatActivity {
 
 
 
-
-
-
-
             }
         });
 

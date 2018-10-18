@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.firebase.client.Firebase;
@@ -87,7 +88,7 @@ public class Orders extends AppCompatActivity {
             @Override
             protected void populateViewHolder(final Post_viewholder viewHolder, final ReportItem model, final int position) {
 
-                viewHolder.SetData(model.getClientName(),model.getTime(),model.getTimeRecieved(),model.getDrName(),model.getOrders());
+                viewHolder.SetData(model.getClientName(),model.getTime(),model.getTimeRecieved(),model.getDrName(),model.getOrders(),model.getLatitude(),model.getLongitude());
                 viewHolder.view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -147,7 +148,7 @@ public class Orders extends AppCompatActivity {
             super(itemView);
             view = itemView;
         }
-        public void SetData(String Username,String Time,String TimeRecieved,String Drname,String Report) {
+        public void SetData(String Username, String Time, String TimeRecieved, String Drname, String Report, final String lat, final String lon) {
 
 
             TextView username=(TextView)view.findViewById(R.id.textview_username);
@@ -155,6 +156,21 @@ public class Orders extends AppCompatActivity {
             TextView DrName=(TextView)view.findViewById(R.id.textview_drName);
             TextView report=(TextView)view.findViewById(R.id.textview_orders);
             TextView timeRecieved=(TextView)view.findViewById(R.id.textview_timeRecieved);
+            Button button=(Button)view.findViewById(R.id.location_order);
+
+
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view)
+                {
+                Intent intent=new Intent(view.getContext(),ViewLocation.class);
+                intent.putExtra("latitude",lat);
+                intent.putExtra("longtude",lon);
+                view.getContext().startActivity(intent);
+                }
+            });
+
+
 
             username.setText(Username);
             timeSent.setText(Time);

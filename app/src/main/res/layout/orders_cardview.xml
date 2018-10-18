@@ -33,6 +33,14 @@
             android:textSize="16dp"
             />
 
+        <Button
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="الموقع"
+            android:id="@+id/location_order"
+            android:layout_below="@+id/textview_drName"
+                />
 
         <TextView
             android:id="@+id/textview_timeSent"
@@ -73,8 +81,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/textview_orders"
             android:text=""
-            android:layout_below="@+id/textview_DeviceName"
-            android:layout_marginTop="90dp"
+            android:layout_below="@+id/location_order"
+            android:layout_marginTop="20dp"
             android:padding="4dp"
             android:textSize="22dp"
             />

@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser isUser=FirebaseAuth.getInstance().getCurrentUser();
         if (isUser!=null ){
 
-            if(isUser.getEmail().equals("taha@gmail.com") || isUser.getEmail().equals("taha@gmail.com")) {
+            if(isUser.getEmail().equals("info@multimedica.com") || isUser.getEmail().equals("amr@multimedica.com") || isUser.getEmail().equals("mohamed@multimedica.com")|| isUser.getEmail().equals("mahmoud@multimedica.com")) {
                 Intent intent = new Intent(MainActivity.this, Admin.class);
                 startActivity(intent);
             }else {
@@ -298,7 +298,7 @@ public class MainActivity extends AppCompatActivity {
 
                                 //to send Notification to Admins Only
 
-                                if (email.equals("amrshalaby73@gmail.com") || email.equals("mabdalsalam1980@yahoo.com") || email.equals("taha@gmail.com")) {
+                                if(email.equals("info@multimedica.com") || email.equals("amr@multimedica.com") || email.equals("mohamed@multimedica.com")|| email.equals("mahmoud@multimedica.com")) {
                                     sendNotificationOrders(name, "you have a orders ");
 
                                 }
@@ -383,8 +383,9 @@ public class MainActivity extends AppCompatActivity {
 
                                 //to send Notification to Admins Only
 
-                                if (email.equals("amrshalaby73@gmail.com") || email.equals("mabdalsalam1980@yahoo.com") || email.equals("taha@gmail.com")) {
-                                    sendNotificationReports(name, "you have a report ");
+                                if(email.equals("info@multimedica.com") || email.equals("amr@multimedica.com") || email.equals("mohamed@multimedica.com") || email.equals("mahmoud@multimedica.com")) {
+
+                                 //   sendNotificationReports(name, "you have a report ");
                                     WriteExcelFile(name, Time, Drname, Adress, Mobile, Speciality, OldUnit, Reports);
 
                                 }

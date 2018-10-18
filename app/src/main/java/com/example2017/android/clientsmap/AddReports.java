@@ -61,6 +61,7 @@ public class AddReports extends AppCompatActivity {
         final String latitude=sh.getString("latitude","31,00");
         final String logitude=sh.getString("longitude","30,00");
 
+
         Calendar calendar=Calendar.getInstance();
         int year=calendar.get(Calendar.YEAR);
         int month=calendar.get(Calendar.MONTH);
@@ -111,8 +112,18 @@ public class AddReports extends AppCompatActivity {
 
                     }
                 });
-   }
+
+
+
+            }
+
+
+
+
+
+
         });
+
 
     }
 

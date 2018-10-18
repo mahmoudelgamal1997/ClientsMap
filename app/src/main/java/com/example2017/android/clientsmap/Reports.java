@@ -15,7 +15,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -30,12 +32,14 @@ import java.util.Calendar;
 public class Reports extends AppCompatActivity {
     DatabaseReference reports;
     RecyclerView recyclerView;
+    DatabaseReference location;
     SharedPreferences sh;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_orders);
         Firebase.setAndroidContext(this);
+
 
 
         Intent myIntent = getIntent();
@@ -46,6 +50,7 @@ public class Reports extends AppCompatActivity {
             name= sh.getString("orders","amr shalaby");
         }
 
+        location=FirebaseDatabase.getInstance().getReference();
         reports = FirebaseDatabase.getInstance().getReference().child("Reports").child(name);
         reports.keepSynced(true);
 
@@ -114,7 +119,7 @@ public class Reports extends AppCompatActivity {
             @Override
             protected void populateViewHolder(final Post_viewholder viewHolder, final ReportItem model, final int position) {
 
-                viewHolder.SetData(model.getClientName(), model.getTime(), model.getTimeRecieved(), model.getDrName(),model.getAdress(),model.getMobile(),model.getSpecialisty(),model.getOldUnit(), model.getComment());
+                viewHolder.SetData(model.getClientName(), model.getTime(), model.getTimeRecieved(), model.getDrName(),model.getAdress(),model.getMobile(),model.getSpecialisty(),model.getOldUnit(), model.getComment(),model.getLatitude(),model.getLongitude());
                 viewHolder.view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -175,7 +180,7 @@ public class Reports extends AppCompatActivity {
             view = itemView;
         }
 
-        public void SetData(String Username, String Time, String TimeRecieved, String Drname,String adress,String phone,String specaility,String OldUnit, String Report) {
+        public void SetData(String Username, String Time, String TimeRecieved, String Drname, String adress, String phone, String specaility, String OldUnit, final String Report,String latitude,String longtude) {
 
 
             TextView username = (TextView) view.findViewById(R.id.textview_username);
@@ -187,6 +192,22 @@ public class Reports extends AppCompatActivity {
             TextView number = (TextView) view.findViewById(R.id.textview_phone);
             TextView report = (TextView) view.findViewById(R.id.textview_orders);
             TextView timeRecieved = (TextView) view.findViewById(R.id.textview_timeRecieved);
+            final String lat=latitude;
+            final String lon=longtude;
+            Button button =(Button)view.findViewById(R.id.location);
+
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent intent=new Intent(view.getContext(),ViewLocation.class);
+                    intent.putExtra("latitude",lat);
+                    intent.putExtra("longtude",lon);
+                    view.getContext().startActivity(intent);
+
+                }
+            });
+
 
             username.setText(Username);
             timeSent.setText(Time);
@@ -197,7 +218,10 @@ public class Reports extends AppCompatActivity {
             speciality.setText(specaility);
             oldUnit.setText(OldUnit);
             timeRecieved.setText(TimeRecieved);
+
         }
+
+
 
     }
 
@@ -236,6 +260,7 @@ public class Reports extends AppCompatActivity {
 
         return CollectionDate;
     }
+
 
 
 }

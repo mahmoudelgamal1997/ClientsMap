@@ -1,7 +1,8 @@
 <resources>
-    <string name="app_name">ClientsMap</string>
+    <string name="app_name">Multi Medica</string>
     <string name="title_activity_client_map">Map</string>
     <string name="title_activity_admin_map">Map</string>
 
     <string name="ShowDatePicker">Date and Time</string>
+    <string name="title_activity_view_location">Map</string>
 </resources>
