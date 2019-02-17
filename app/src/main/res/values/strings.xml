@@ -5,4 +5,7 @@
 
     <string name="ShowDatePicker">Date and Time</string>
     <string name="title_activity_view_location">Map</string>
+    <string name="directionsApiKey">AIzaSyAaGQJ98MaaNztJp1FrGD1cMD98fnF8c6w</string>
+
+
 </resources>

@@ -56,23 +56,11 @@
         <activity android:name=".AddReports" />
         <activity android:name=".Orders" />
 
-        <service android:name=".MyFCMService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
+
 
         <!-- ###  Register service get token and send it to service  ### -->
-        <service android:name=".FCMRegisterationService" />
 
         <!-- ###  Service response to token refresh event  ### -->
-        <service
-            android:name=".FCMTokenRefreshListenerService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-            </intent-filter>
-        </service>
 
         <activity android:name=".OrderPerson" />
         <activity android:name=".AddDevice" />

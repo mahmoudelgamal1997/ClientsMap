@@ -88,7 +88,7 @@ public class AddOreders extends AppCompatActivity {
                         temp.child("latitude").setValue(latitude);
                         temp.child("longitude").setValue(logitude);
                         Toast.makeText(AddOreders.this, "تم التسجيل التقرير بنجاح", Toast.LENGTH_SHORT).show();
-
+                        finish();
 
 
 

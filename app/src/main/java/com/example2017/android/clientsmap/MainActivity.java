@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
     LocationRequest mLocationRequest;
     int preventNotification=0;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
 
         requestPermission();
         createLocationRequest();
-           alarmOrder();
-           alarmReports();
+         //  alarmOrder();
+          // alarmReports();
 
 
          }
@@ -299,7 +300,7 @@ public class MainActivity extends AppCompatActivity {
                                 //to send Notification to Admins Only
 
                                 if(email.equals("info@multimedica.com") || email.equals("amr@multimedica.com") || email.equals("mohamed@multimedica.com")|| email.equals("mahmoud@multimedica.com")) {
-                                    sendNotificationOrders(name, "you have a orders ");
+                               //     sendNotificationOrders(name, "you have a orders ");
 
                                 }
                             }
@@ -382,6 +383,7 @@ public class MainActivity extends AppCompatActivity {
                                 String Time = reportItem1.getTime();
 
                                 //to send Notification to Admins Only
+
 
                                 if(email.equals("info@multimedica.com") || email.equals("amr@multimedica.com") || email.equals("mohamed@multimedica.com") || email.equals("mahmoud@multimedica.com")) {
 

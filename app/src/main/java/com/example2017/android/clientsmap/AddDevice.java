@@ -149,6 +149,7 @@ public class AddDevice extends AppCompatActivity {
                                 temp.child("TimeFinish").setValue("تحت الطلب");
                                 temp.child("ID").setValue(user);
                                 Toast.makeText(AddDevice.this, "تم تسجيل الجهاز بنجاح", Toast.LENGTH_SHORT).show();
+                                finish();
                             }
 
                             @Override

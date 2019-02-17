@@ -104,7 +104,7 @@ public class AddReports extends AppCompatActivity {
                         temp.child("latitude").setValue(latitude);
                         temp.child("longitude").setValue(logitude);
                         Toast.makeText(AddReports.this, "تم التسجيل التقرير بنجاح", Toast.LENGTH_SHORT).show();
-
+                        finish();
                     }
 
                     @Override

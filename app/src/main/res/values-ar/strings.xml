@@ -4,4 +4,6 @@
     <string name="ShowDatePicker">تحديد الوقت والتاريخ </string>
     <string name="title_activity_admin_map">خريطه</string>
     <string name="title_activity_client_map">خريطه</string>
+    <string name="title_activity_view_location">خريطه</string>
+    <string name="directionsApiKey">كود الاتجاهات</string>
 </resources>
